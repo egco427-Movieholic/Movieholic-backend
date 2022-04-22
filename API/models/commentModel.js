@@ -8,7 +8,7 @@ var CommentSchema = new Schema({
         Required: 'Please enter'
     },
     comments: [{
-        postby: {
+        postBy: {
             type: String,
             Required: 'Please enter'
         },
