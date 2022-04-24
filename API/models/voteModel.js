@@ -20,6 +20,10 @@ var VoteSchema = new Schema({
             type: String,
             Required: 'Please enter'
         },
+        email: {
+            type: String,
+            Required: 'Please enter'
+        },
         voteTime: {
             type: String,
             Required: 'Please enter'

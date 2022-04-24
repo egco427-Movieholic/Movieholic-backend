@@ -5,4 +5,7 @@ module.exports = function(app){
     app.route('/movieDetail/vote/:movie_id')
         .get(votes.getAverageVote)
         .post(votes.addVote)
+
+    app.route('/movieDetail/vote/:movie_id/:email')
+        .get(votes.getUserVoteStatus)
 }
