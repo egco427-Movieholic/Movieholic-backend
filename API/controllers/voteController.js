@@ -54,6 +54,7 @@ exports.addVote = function(req, res){
         //==========[Create object newVote]==========//
         var newVote = {
             voteBy: req.body.voteBy,
+            email: req.body.email,
             voteTime: dateTime,
             score: req.body.score
         }
@@ -66,5 +67,28 @@ exports.addVote = function(req, res){
         //==========[Update vote or create if non exist]==========//
         movieVotes.findOneAndUpdate({movie_id : currentVotes.movie_id}, currentVotes, {new: true,upsert: true}, function(err, response){})
         res.json(currentVotes)
+    })
+}
+
+exports.getUserVoteStatus = function(req, res){
+    movieVotes.findOne({movie_id : req.params.movie_id}, null, function(err, votes){
+        
+        let result = {
+            IsVoted: false
+        }
+
+        if(votes != null)
+        {
+            for(var i=0 ; i<votes.votes.length ; i++)
+            {
+                if(req.params.email == votes.votes[i].email)
+                {
+                    result.IsVoted = true
+                    break
+                }
+            }
+        }
+
+        res.json(result)
     })
 }
