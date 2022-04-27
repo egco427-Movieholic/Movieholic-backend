@@ -4,7 +4,7 @@ movieComments      = mongoose.model('Comments')
 exports.getComments = function(req, res){
     movieComments.findOne({movie_id : req.params.movie_id}, null, function(err, comments){
         if(err) throw err
-        console.log(comments)
+       // console.log(comments)
         res.json(comments)
     })
 }

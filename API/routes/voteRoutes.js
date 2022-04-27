@@ -6,6 +6,6 @@ module.exports = function(app){
         .get(votes.getAverageVote)
         .post(votes.addVote)
 
-    app.route('/movieDetail/vote/:movie_id/:email')
+    app.route('/movieDetail/vote/:movie_id/:name')
         .get(votes.getUserVoteStatus)
 }
