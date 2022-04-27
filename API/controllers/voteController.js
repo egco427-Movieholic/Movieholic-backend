@@ -10,7 +10,7 @@ exports.getAverageVote = function(req, res){
 
         if(votes != null)
         {
-            result.averageVote = (parseFloat(votes.total_score)/ parseFloat(votes.vote_count)).toFixed(2)
+            result.averageVote = (parseFloat(votes.total_score)/ parseFloat(votes.vote_count)).toFixed(1)
         }
 
         res.json(result)
@@ -56,7 +56,8 @@ exports.addVote = function(req, res){
             voteBy: req.body.voteBy,
             email: req.body.email,
             voteTime: dateTime,
-            score: req.body.score
+            score: req.body.score,
+            IsVoted : req.body.IsVoted
         }
         
         //==========[Push new vote into array inside the object]==========//
@@ -71,24 +72,25 @@ exports.addVote = function(req, res){
 }
 
 exports.getUserVoteStatus = function(req, res){
-    movieVotes.findOne({movie_id : req.params.movie_id}, null, function(err, votes){
-        
+    movieVotes.findOne({movie_id : req.params.movie_id  }, null, function(err, votes){
         let result = {
             IsVoted: false
         }
-
+        console.log(votes)
         if(votes != null)
         {
             for(var i=0 ; i<votes.votes.length ; i++)
-            {
-                if(req.params.email == votes.votes[i].email)
+            {console.log(req.params.name,votes.votes[i])
+                if(req.params.name == votes.votes[i].voteBy)
                 {
-                    result.IsVoted = true
+                   
+                    result.IsVoted = true 
+                   
                     break
                 }
             }
         }
-
+        
         res.json(result)
     })
 }
