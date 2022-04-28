@@ -31,10 +31,6 @@ var VoteSchema = new Schema({
         score: {
             type: Number,
             Required: 'Please enter'
-        },
-        IsVoted: {
-            type: Boolean,
-            Required: 'Please enter'
         }
     }]
 })
