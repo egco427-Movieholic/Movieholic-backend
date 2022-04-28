@@ -57,7 +57,6 @@ exports.addVote = function(req, res){
             email: req.body.email,
             voteTime: dateTime,
             score: req.body.score,
-            IsVoted : req.body.IsVoted
         }
         
         //==========[Push new vote into array inside the object]==========//
@@ -73,19 +72,15 @@ exports.addVote = function(req, res){
 
 exports.getUserVoteStatus = function(req, res){
     movieVotes.findOne({movie_id : req.params.movie_id  }, null, function(err, votes){
-        let result = {
-            IsVoted: false
-        }
+        let result = {}
         console.log(votes)
         if(votes != null)
         {
             for(var i=0 ; i<votes.votes.length ; i++)
-            {console.log(req.params.name,votes.votes[i])
-                if(req.params.name == votes.votes[i].voteBy)
+            {
+                if(req.params.email == votes.votes[i].email)
                 {
-                   
-                    result.IsVoted = true 
-                   
+                    result = votes.votes[i]
                     break
                 }
             }
