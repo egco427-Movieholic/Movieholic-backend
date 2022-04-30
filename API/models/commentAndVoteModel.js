@@ -2,7 +2,7 @@
 var mongoose = require('mongoose')
 var Schema   = mongoose.Schema
 
-var VoteSchema = new Schema({
+var CommentAndVoteSchema = new Schema({
     movie_id: {
         type: String,
         Required: 'Please enter'
@@ -15,8 +15,8 @@ var VoteSchema = new Schema({
         type: Number,
         Required: 'Please enter'
     },
-    votes: [{
-        voteBy: {
+    commentAndVote: [{
+        postBy: {
             type: String,
             Required: 'Please enter'
         },
@@ -24,7 +24,11 @@ var VoteSchema = new Schema({
             type: String,
             Required: 'Please enter'
         },
-        voteTime: {
+        postTime: {
+            type: String,
+            Required: 'Please enter'
+        },
+        text: {
             type: String,
             Required: 'Please enter'
         },
@@ -32,11 +36,7 @@ var VoteSchema = new Schema({
             type: Number,
             Required: 'Please enter'
         },
-        IsVoted: {
-            type: Boolean,
-            Required: 'Please enter'
-        }
     }]
 })
 
-module.exports = mongoose.model('Votes', VoteSchema) 
+module.exports = mongoose.model('CommentAndVote', CommentAndVoteSchema) 
