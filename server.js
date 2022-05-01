@@ -5,8 +5,11 @@ mongoose    = require('mongoose')
 movieCommentAndVote = require('./API/models/commentAndVoteModel')
 bodyParser  = require('body-parser')
 
+const mongoAtlas = 'mongodb+srv://movie:m12345678@movies.hlyun.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+//'mongodb://localhost/Movie' 
+
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/Movie', function(error){
+mongoose.connect(mongoAtlas, function(error){
     if(error) throw error
     console.log('Successfully connected');
 })
